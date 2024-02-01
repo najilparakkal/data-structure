@@ -73,6 +73,7 @@ function merge(leftArr,rightArr){
 let arr= [54,32,52,2,6]
 console.log(mergeSort(arr));
 
+
 function quickSort(arr,left=0,right=arr.length-1){
     if(left<right){
         let pivot = partition(arr,left,right)
@@ -85,7 +86,7 @@ function partition(arr,left,right){
     let pivot = arr[right]
     let i = left-1
     for(let j=left;j<right;j++){
-        if(arr[j]<pivot){
+        if(arr[j]<pivot){ 
             i++
             swap(arr,i,j)
         }

@@ -10,13 +10,14 @@ class hashTable{
         }
         return total % this.size
     }
-    set (key,value){
+    set(key,value){
         const index = this.hash(key)
         const bucket = this.table[index]
         if(!bucket){
             this.table[index] = [[key,value]]
+
         }else{
-            const sameKey = bucket.find(item=>item[0] === value)
+            const sameKey = bucket.find(item =>item[0] === value)
             if(sameKey){
                 sameKey[1] = value
             }else{
@@ -26,20 +27,20 @@ class hashTable{
     }
     get(key){
         const index = this.hash(key)
-         const bucket = this.table[index]
-         if(bucket){
-            const sameKey = bucket.find(item=> item[0] === key)
+        const bucket = this.table[index]
+        if(bucket){
+            const sameKey = bucket.find(item=>item[0]===key)
             if(sameKey){
                 return sameKey[1]
             }
-         }
-         return undefined
+        }
+        return undefined
     }
     remove(key){
         const index = this.hash(key)
         const bucket = this.table[index]
         if(bucket){
-            const sameKey  = bucket.find(item=>item[0] === key)
+            const sameKey = bucket.find(item=>item[0]===key)
             if(sameKey){
                 bucket.splice(bucket.indexOf(sameKey),1)
             }
