@@ -4,8 +4,8 @@ class hashTable{
         this.size = size
     }
     hash(key){
-        let total = 0
-        for(let i=0 ; i<key.length;i++){
+        let total = 0;
+        for(let i=0;i<key.length;i++){
             total += key.charCodeAt(i)
         }
         return total % this.size
@@ -15,11 +15,10 @@ class hashTable{
         const bucket = this.table[index]
         if(!bucket){
             this.table[index] = [[key,value]]
-
         }else{
-            const sameKey = bucket.find(item =>item[0] === value)
+            const sameKey = bucket.find(item => item[0]===value)
             if(sameKey){
-                sameKey[1] = value
+                sameKey[1] =  [value]
             }else{
                 bucket.push([key,value])
             }
@@ -29,7 +28,7 @@ class hashTable{
         const index = this.hash(key)
         const bucket = this.table[index]
         if(bucket){
-            const sameKey = bucket.find(item=>item[0]===key)
+            const sameKey = bucket.find(item => item [0] === key)
             if(sameKey){
                 return sameKey[1]
             }
@@ -40,7 +39,7 @@ class hashTable{
         const index = this.hash(key)
         const bucket = this.table[index]
         if(bucket){
-            const sameKey = bucket.find(item=>item[0]===key)
+            const sameKey = bucket.find(item => item [0] === key)
             if(sameKey){
                 bucket.splice(bucket.indexOf(sameKey),1)
             }
@@ -54,10 +53,9 @@ class hashTable{
         }
     }
 }
-const table = new hashTable(20)
-table.set("name" ,"NAJIL")
-table.set("age",19)
-table.set("name" ,"akhil")
-table.remove("name")
-table.print()
-console.log(table.get("name"));
+const table = new hashTable(10)
+table.set("name","najil")
+table.set("week" , 14)
+table.set("week" , 20)
+
+console.log(table.get("week"));
