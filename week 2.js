@@ -86,66 +86,98 @@
 // console.log(mergeSort(arr));
 
 
-// class hashTable {
-//     constructor(size) {
-//         this.table = new Array(size)
-//         this.size = size
-//     }
-//     hash(key) {
-//         let total = 0
-//         for (let i = 0; i < key.length; i++) {
-//             total += key.charCodeAt(i)
-//         }
-//         return total % this.size
-//     }
-//     set(key, value) {
-//         const index = this.hash(key)
-//         const bucket = this.table[index]
-//         if (!bucket) {
-//             this.table[index] = [[key, value]]
-//         } else {
-//             const sameKey = bucket.find(item => item[0] === value)
-//             if (sameKey) {
-//                 sameKey[1] = [value]
-//             } else {
-//                 bucket.push([key, value])
-//             }
-//         }
-//     }
-//     get(key) {
-//         const index = this.hash(key)
-//         const bucket = this.table[index]
-//         if (bucket) {
-//             const sameKey = bucket.find(item => item[0] === key)
-//             if (sameKey) {
-//                 return [...sameKey]
-//             }
-//         }
-//         return undefined
-//     }
-//     remove(key) {
-//         const index = this.hash(key)
-//         const bucket = this.table[index]
-//         if (bucket) {
-//             const sameKey = bucket.find(item => item[0] === key)
-//             if (sameKey) {
-//                 bucket.splice(bucket.indexOf(sameKey), 1)
-//             }
-//         }
-//     }
-//     print() {
-//         for (let i = 0; i < this.table.length; i++) {
-//             if (this.table[i]) {
-//                 console.log(this.table[i]);
-//             }
-//         }
-//     }
-// }
-// const table = new hashTable(10)
-// table.set("name", "najl")
-// table.set("week", 14)
-// table.set("week", 40)
-// console.log(table.get("week"));
+class hashTable {
+    constructor(size) {
+        this.table = new Array(size)
+        this.size = size
+    }
+    hash(key) {
+        let total = 0
+        for (let i = 0; i < key.length; i++) {
+            total += key.charCodeAt(i)
+        }
+        return total % this.size
+    }
+    set(key, value) {
+        const index = this.hash(key)
+        const bucket = this.table[index]
+        if (!bucket) {
+            this.table[index] = [[key, value]]
+        } else {
+            const sameKey = bucket.find(item => item[0] === value)
+            if (sameKey) {
+                sameKey[1] = [value]
+            } else {
+                bucket.push([key, value])
+            }
+        }
+    }
+    get(key) {
+        const index = this.hash(key)
+        const bucket = this.table[index]
+        if (bucket) {
+            const sameKey = bucket.find(item => item[0] === key)
+            if (sameKey) {
+                return [...sameKey]
+            }
+        }
+        return undefined
+    }
+    remove(key) {
+        const index = this.hash(key)
+        const bucket = this.table[index]
+        if (bucket) {
+            const sameKey = bucket.find(item => item[0] === key)
+            if (sameKey) {
+                bucket.splice(bucket.indexOf(sameKey), 1)
+            }
+        }
+    }
+
+    reverse(key) {
+        const index = this.hash(key);
+        const bucket = this.table[index];
+    
+        if (bucket) {
+            const sameKey = bucket.find(item => item[0] === key);
+    
+            if (sameKey) {
+               return  sameKey[1] = String(sameKey[1]).split("").reverse().join("");
+            }
+        }
+    }
+    countSameValues(key) {
+        let count = 1;
+        const index = this.hash(key);
+    
+        for (let i = 0; i < this.table.length; i++) {
+            const bucket = this.table[i];
+            if (bucket) {
+                for (const item of bucket) {
+                    if (item[0] === key) {
+                        count++;
+                    }
+                }
+            }
+        }
+        return count;
+    }
+    
+    print() {
+        for (let i = 0; i < this.table.length; i++) {
+            if (this.table[i]) {
+                console.log(this.table[i]);
+            }
+        }
+    }
+}
+const table = new hashTable(10)
+table.set("name", "najl")
+table.set("week", 14)
+table.set("week", 40)
+table.set("age", 14)
+
+console.log(table.countSameValues("week"));
 
 
 // class queue{
@@ -182,57 +214,80 @@
 // q.enqueue(40)
 // q.print()
 
-class stack{
-    constructor(){
-        this.element = []
-    }
-    push(data){
-        this.element.push(data)
-    }
-    pop(){
-        return this.element.pop()
-    }
-    peek(){
-        return this.element[this.element.length-1]
-    }
+// class stack{
+//     constructor(){
+//         this.element = []
+//     }
+//     push(data){
+//         this.element.push(data)
+//     }
+//     pop(){
+//         return this.element.pop()
+//     }
+//     peek(){
+//         return this.element[this.element.length-1]
+//     }
     
-    min(){
-        let min = this.element[0]
-        for(let i=1;i<this.element.length;i++){
-            if(min>this.element[i]){
-                min = this.element[i]
-            }
-        }
-        return min
-    }
-    secondLargest() {
-        let firstMax = this.element[0];
-        let secondMax = this.element[1];
+//     min(){
+//         let min = this.element[0]
+//         for(let i=1;i<this.element.length;i++){
+//             if(min>this.element[i]){
+//                 min = this.element[i]
+//             }
+//         }
+//         return min
+//     }
+//     secondLargest(){
+//         let largest = this.element[0]
+//         let secLargest = this.element[1]
+//         if(largest<secLargest){
+//             [largest,secLargest] = [secLargest,largest]
+//         }
+//         for(let i=2;i<this.element.length;i++){
+//             if(this.element[i]>largest){
+//                 secLargest = largest
+//                 largest = this.element[i]
+//             }else if(secLargest<this.element[i] && this.element[i] !== largest){
+//                 secLargest = this.element[i]
+//             }
+//         }
+//         return secLargest 
+//     }
+//     largest(){
+//         let largest = this.element[0]
+//         for(let i=1;i<this.element.length;i++){
+//             if(this.element[i]>largest){
+//                 largest = this.element[i]
+//             }
+//         }
+//         return largest
+//     }
+//     seondMin(){
+//         let min = this.element[0]
+//         let secondMin = this.element[1]
+//         if(min>secondMin){
+//             [min,secondMin] = [secondMin,min]
+//         }
+//         for(let i=2;i<this.element.length;i++){
+//             if(this.element[i]<min){
+//                 secondMin = min
+//                 min =this.element[i]
+//             }else if(secondMin > this.element [i] && this.element[i]!== min){
+//                 secondMin = this.element[i]
+//             }
+//         }
+//         return [min,secondMin]
+//     }
     
-        if (secondMax > firstMax) {
-            [firstMax, secondMax] = [secondMax, firstMax];
-        }
-        for (let i = 2; i < this.element.length; i++) {
-            if (this.element[i] > firstMax) {
-                secondMax = firstMax;
-                firstMax = this.element[i];
-            } else if (this.element[i] > secondMax && this.element[i] !== firstMax) {
-                secondMax = this.element[i];
-            }
-        }
-    
-        return secondMax;
-    }
-    
-    print(){
-        console.log(this.element);
-    }
-}
-const s = new stack()
-s.push(10)
-s.push(60)
-s.push(30)
-s.push(40)
-s.push(50)
-s.print()
-console.log(s.secondLargest());
+//     print(){
+//         console.log(this.element);
+//     }
+// }
+// const s = new stack()
+// s.push(10)
+// s.push(60)
+// s.push(30)
+// s.push(40)
+// s.push(50)
+// s.print()
+// console.log(s.seondMin());
