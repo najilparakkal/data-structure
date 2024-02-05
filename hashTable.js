@@ -8,7 +8,7 @@ class hashTable{
         for(let i=0;i<key.length;i++){
             total += key.charCodeAt(i)
         }
-        return total % this.size
+        return total %this.size
     }
     set(key,value){
         const index = this.hash(key)
@@ -16,9 +16,9 @@ class hashTable{
         if(!bucket){
             this.table[index] = [[key,value]]
         }else{
-            const sameKey = bucket.find(item => item[0]===value)
-            if(sameKey){
-                sameKey[1] =  [value]
+            const samkey = bucket.find(item => item[0] === value)
+            if(samkey){
+                samkey[1] = [value]
             }else{
                 bucket.push([key,value])
             }
@@ -28,26 +28,36 @@ class hashTable{
         const index = this.hash(key)
         const bucket = this.table[index]
         if(bucket){
-            const sameKey = bucket.find(item => item [0] === key)
-            if(sameKey){
-                return sameKey[1]
+            const samkey = bucket.find(item => item [0] === key)
+            if(samkey){
+                return samkey[1]
             }
         }
         return undefined
+    }
+    reverse(key){
+        const index = this.hash(key)
+        const bucket = this.table[index]
+        if(bucket){
+            const samkey = bucket.find(item => item [0] === key)
+            if(samkey){
+                return samkey[1]=String(samkey[1]).split("").reverse().join("")
+            }
+        }
     }
     remove(key){
         const index = this.hash(key)
         const bucket = this.table[index]
         if(bucket){
-            const sameKey = bucket.find(item => item [0] === key)
-            if(sameKey){
-                bucket.splice(bucket.indexOf(sameKey),1)
+            const samkey = bucket.find(item => item [0] === key)
+            if(samkey){
+                return bucket.splice(bucket.indexOf(samkey),1)
             }
         }
     }
     print(){
         for(let i=0;i<this.table.length;i++){
-            if(this.table[i]){
+            if(this.table[i] ){
                 console.log(i,this.table[i]);
             }
         }
@@ -55,7 +65,11 @@ class hashTable{
 }
 const table = new hashTable(10)
 table.set("name","najil")
-table.set("week" , 14)
-table.set("week" , 20)
+table.set("week",14)
+table.set("BCE",133)
+table.set("BCE",144)
 
-console.log(table.get("week"));
+table.print()
+console.log(table.get("BCE"));
+console.log(table.reverse("name"));
+table.print()
