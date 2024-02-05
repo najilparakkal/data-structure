@@ -24,16 +24,16 @@ class hashTable{
             }
         }
     }
-    get(key){
-        const index = this.hash(key)
-        const bucket = this.table[index]
+    get(key) {
+        const index = this.hash(key);
+        const bucket = this.table[index];
+        let items = []
         if(bucket){
-            const samkey = bucket.find(item => item [0] === key)
-            if(samkey){
-                return samkey[1]
-            }
+           for(let item of bucket){
+            items.push(item[1])
+           }
         }
-        return undefined
+        return items.length >0 ? items:undefined
     }
     reverse(key){
         const index = this.hash(key)
@@ -72,4 +72,3 @@ table.set("BCE",144)
 table.print()
 console.log(table.get("BCE"));
 console.log(table.reverse("name"));
-table.print()
