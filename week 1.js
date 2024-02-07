@@ -135,7 +135,7 @@
 //             let current = this.head
 //             while(current.next && current.next.data !== data){
 //                 current = current.next
-                
+
 //             }
 //             if(current.next){
 //                 removeNode= current.next
@@ -240,34 +240,34 @@
 //         }
 //         this.length++
 //     }
-    // insert(data,index){
-    //     if(index <0|| index >this.length){
-    //         console.log("INVALID INDEX");
-    //         return null
-    //     }
-    //     let insertNode = new node (data)
-    //     if(index === 0){
-    //         let node = this.head
-    //         insertNode.next = this.head
-    //         node.prev = insertNode
-    //         this.head = insertNode
-    //     }else if(index === this.length){
-    //         let node = this.tail
-    //         node.next = insertNode
-    //         insertNode.prev = node
-    //         this.tail = insertNode
-    //     }else{
-    //         let current = this.head
-    //         for(let i=0;i<index -1;i++){
-    //             current = current.next
-    //         }
-    //         insertNode.next = current.next
-    //         current.next = insertNode
-    //         insertNode.next.prev = insertNode
-    //         insertNode.prev = current
-     
-    //     }
-    // }
+// insert(data,index){
+//     if(index <0|| index >this.length){
+//         console.log("INVALID INDEX");
+//         return null
+//     }
+//     let insertNode = new node (data)
+//     if(index === 0){
+//         let node = this.head
+//         insertNode.next = this.head
+//         node.prev = insertNode
+//         this.head = insertNode
+//     }else if(index === this.length){
+//         let node = this.tail
+//         node.next = insertNode
+//         insertNode.prev = node
+//         this.tail = insertNode
+//     }else{
+//         let current = this.head
+//         for(let i=0;i<index -1;i++){
+//             current = current.next
+//         }
+//         insertNode.next = current.next
+//         current.next = insertNode
+//         insertNode.next.prev = insertNode
+//         insertNode.prev = current
+
+//     }
+// }
 //     removeIndex(index){
 //         if(index <0|| index >=this.length){
 //             console.log("INVALID INDEX");
@@ -441,3 +441,67 @@
 //     reverse.push(str[i])
 // }
 // console.log(reverse);
+
+
+function create() {
+    return {
+        head: null,
+        tail: null,
+        createNode: function (data) {
+            return {
+                head: data,
+                next: null
+            }
+        },
+        insert: function (data) {
+            const node = this.createNode(data)
+            if (!this.head) {
+                this.head = node
+                this.tail = node
+            } else {
+                this.tail.next = node
+                this.tail = node
+            }
+        },
+        reverse: function () {
+            let prev = null
+            let next = null
+            let tail = prev
+            let current = this.head
+            while (current) {
+                next = current.next
+                current.next = null
+                if (!prev) {
+                    prev = current
+                    tail = current
+                } else {
+                    console.log(current);
+                }
+                if(!next) {
+                    break
+                } else {
+                    current = next
+                }
+            }
+            this.head = prev
+        },
+        print: function () {
+            let current = this.head
+            while (current) {
+                console.log(current.head);
+                current = current.next
+            }
+        }
+    }
+}
+
+const list = create()
+list.insert(10)
+list.insert(20)
+list.insert(30)
+list.insert(40)
+list.insert(50)
+list.print()
+list.reverse()
+console.log('______________');
+list.print()

@@ -153,3 +153,62 @@
 // console.log(st.secondMin("["));
 
 
+// class queue{
+//     constructor(){
+//         this.queue=[]
+//         this.rear = 0
+//         this.front = 0
+//     }
+//     enqueuq(data){
+//         this.queue[this.rear] = data
+//         this.rear++
+//     }
+//     dequeu(){
+//         let item = this.queue[this.front]
+//         delete this.queue[this.front]
+//         this.front++
+//         return item
+//     }
+//     peek(){
+//         return this.queue[this.front]
+//     }
+//     print(){
+//         console.log(this.queue);
+//     }
+// }
+// const q = new queue()
+// q.enqueuq(10)
+// q.enqueuq(20)
+// q.enqueuq(30)
+// q.enqueuq(40)
+// q.print()
+// console.log(q.dequeu());
+// q.print()
+
+// function quickSort(arr,left=0,rigth=arr.length-1){
+//     if(left<rigth){
+//         let pivot = partition(arr,left,rigth)
+//         quickSort(arr,left,pivot-1)
+//         quickSort(arr,pivot+1,rigth)
+//     }
+//     return arr
+// }
+// function partition(arr,left,right){
+//     let pivot = arr[right]
+//     let i = left-1
+//     for(let j=left;j<right;j++){
+//         if(arr[j]<pivot){
+//             i++
+//             swap(arr,i,j)
+//         }
+//     }
+//     swap(arr,i+1,right)
+//     return i+1
+// }
+// function swap(arr,i,j){
+//     let temp = arr[i]
+//     arr[i] = arr[j]
+//     arr[j] = temp
+// }
+// let arr = [6,5,4,3,2,1]
+// console.log(quickSort(arr));
