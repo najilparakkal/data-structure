@@ -475,7 +475,8 @@ function create() {
                     prev = current
                     tail = current
                 } else {
-                    console.log(current);
+                    current.next = prev
+                    prev = current
                 }
                 if(!next) {
                     break
