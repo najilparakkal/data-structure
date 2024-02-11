@@ -1,52 +1,52 @@
-// class node{
-//     constructor(data){
+// class node {
+//     constructor(data) {
 //         this.data = data
 //         this.left = null
 //         this.right = null
 //     }
 // }
-// class tree{
-//     constructor(){
+// class tree {
+//     constructor() {
 //         this.root = null
 //     }
-//     isEmpty(){
+//     isEmpty() {
 //         return this.root === null
 //     }
-//     insert(data){
-//         const insertNode = new node(data)
-//         if(this.isEmpty()){
-//             this.root = insertNode
-//         }else{
-//             this.insertNode(this.root,insertNode)
+//     insert(data) {
+//         let newNode = new node(data)
+//         if (this.isEmpty()) {
+//             this.root = newNode
+//         } else {
+//             this.insetNode(this.root, newNode)
 //         }
 //     }
-//     insertNode(root,newNode){
-//         if(newNode.data <root.data){
-//             if(root.left === null){
+//     insetNode(root, newNode) {
+//         if (root.data > newNode.data) {
+//             if (root.left === null) {
 //                 root.left = newNode
-//             }else{
-//                 this.insertNode(root.left,newNode)
+//             } else {
+//                 this.insetNode(root.left, newNode)
 //             }
-//         }else{
-//             if(root.right=== null){
+//         } else {
+//             if (root.right === null) {
 //                 root.right = newNode
-//             }else{
-//                 this.insertNode(root.right,newNode)
+//             } else {
+//                 this.insetNode(root.right, newNode)
 //             }
 //         }
 //     }
-//     serch(root,data){
-//         if(!root){
+//     search(root, data) {
+//         if (!root) {
 //             return false
-//         }else{
-//             if(root.data === data){
+//         } else {
+//             if (root.data === data) {
 //                 return true
-//             } else if(data < root.data){
-//                return this.serch(root.left,data)
-//             } else{
-//                return this.serch(root.right,data)
+//             } else if (data < root.data) {
+//                 this.search(root.left, data)
+//             } else {
+//                 this.search(root.right, data)
 //             }
-//         }    
+//         }
 //     }
 //     preOrder(root){
 //         if(root){
@@ -69,8 +69,8 @@
 //             console.log(root.data);
 //         }
 //     }
-//     leveOrder(){
-//         let queue =[]
+//     levelOrder(){
+//         let queue = []
 //         queue.push(this.root)
 //         while(queue.length){
 //             let curr = queue.shift()
@@ -87,28 +87,28 @@
 //         if(!root.left){
 //             return root.data
 //         }else{
-//             return this.min(root.left)
+//             this.min(root.left)
 //         }
 //     }
 //     max(root){
 //         if(!root.right){
 //             return root.data
 //         }else{
-//             return this.max(root.right)
+//             this.max(root.right)
 //         }
 //     }
-//     delete(data){
-//         this.deleteNode(this.root,data)
+//     remove(data){
+//         this.removeData(this.root,data)
 //     }
-//     deleteNode(root,data){
+//     removeData(root,data){
 //         if(root === null){
 //             return root
 //         }
-//         if(data < root.data){
-//             root.left = this.deleteNode(root.left,data)
-//         } else if( data> root.data){
-//             root.right = this.deleteNode(root.right,data)
-//         } else{
+//         if(root.data> data){
+//             root.left = this.removeData(root.left,data)
+//         }else if(root.data<data){
+//             root.right = this.removeData(root.right,data)
+//         }else{
 //             if(!root.left && !root.right){
 //                 return null
 //             }
@@ -118,7 +118,7 @@
 //                 return root.left
 //             }
 //             root.data = this.min(root.right)
-//             root.right = this.deleteNode(root.right,root.data)
+//             root.right = this.removeData(root.right,root.data)
 //         }
 //         return root
 //     }
@@ -127,34 +127,32 @@
 // tr.insert(10)
 // tr.insert(20)
 // tr.insert(5)
-// tr.insert(8)
 // tr.insert(3)
-// console.log(tr.serch(tr.root,10));
-// console.log(tr.serch(tr.root,20));
-// console.log(tr.serch(tr.root,5));
-// console.log(tr.serch(tr.root,8));
-// console.log(tr.serch(tr.root,30));
-// tr.inOrder(tr.root)
+// tr.insert(8)
+// tr.remove(10)
+// tr.levelOrder()
+// console.log(tr.root,10);
 
 
-// adjecency Metrix 
+
+// adjecency Matrix 
+
 // let metrix = [
 //     [0,1,0],
 //     [1,0,1],
 //     [0,1,0]
 // ]
-// console.log(metrix[1][2]);
+// console.log(metrix[0][2]);
 
-// adjenceny List 
+// adjecency List 
 // let list = {
-//     "A":["B"],
-//     "B":["A","C"],
-//     "C":["B"]
+//     'A':["B"],
+//     'B':["A","C"],
+//     'C':["B"]
 // }
-// console.log(list["B"]);
+// console.log(list["A"]);
 
-
-// class listGraph{
+// class graph{
 //     constructor(){
 //         this.adjecencyList = {}
 //     }
@@ -174,37 +172,35 @@
 //         this.adjecencyList[vertex2].add(vertex1)
 //     }
 //     hasEdge(vertex1,vertex2){
-//         return (
-//             this.adjecencyList[vertex1].has(vertex2)
+//         return(
+//             this.adjecencyList[vertex1].has(vertex2)&&this.adjecencyList[vertex2].has(vertex1)
 //         )
-//     }
-//     removeVertix(vertex){
-//         if(!this.adjecencyList[vertex]){
-//             return console.log("No Element");
-//         }
-//         for(let node of this.adjecencyList[vertex]){
-//             this.removeEdge(vertex,node)
-//         }
-//         delete this.adjecencyList[vertex]
-
 //     }
 //     removeEdge(vertex1,vertex2){
 //         this.adjecencyList[vertex1].delete(vertex2)
 //         this.adjecencyList[vertex2].delete(vertex1)
 //     }
-//     display(){
-//         for(let nodes in this.adjecencyList){
-//             console.log(nodes + "->" +[...this.adjecencyList[nodes]]);
+//     removeVertex(vertex){
+//         if(!this.adjecencyList[vertex]){
+//             return console.log("null");
+//         }
+//         for(let node of this.adjecencyList[vertex]){
+//             this.removeEdge(node)
+//         }
+//         delete this.adjecencyList[vertex]
+//     }
+//     desplay(){
+//         for(let nod in this.adjecencyList){
+//             console.log(nod+" =>"+[...this.adjecencyList[nod]]);
 //         }
 //     }
 // }
-// const graph = new listGraph()
-// graph.addVertex("A")
-// graph.addVertex("B")
-// graph.addVertex("C")
-// graph.addEdges("A","B")
-// graph.addEdges("B","C")
-// graph.display()
-// console.log("______________");
-// graph.removeVertix("C")
-// graph.display()
+// const gr = new graph()
+// gr.addVertex("A")
+// gr.addVertex("B")
+// gr.addVertex("C")
+// gr.addEdges("A","B")
+// gr.addEdges("B","C")
+// gr.desplay()
+
+
