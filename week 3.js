@@ -269,3 +269,53 @@
 // console.log(minHeap.heap);
 // console.log(minHeap.heapSort());
 
+
+
+class TrieNode{
+    constructor(){
+        this.child = {}
+        this.end = false
+    }
+}
+class Trie{
+    constructor(){
+        this.root = new TrieNode()
+    }
+    insert(word){
+        let currend = this.root
+        for(let i=0;i<word.length;i++){
+            let char = word[i]
+            if(!currend.child[char]){
+                currend.child[char] = new TrieNode()
+            }
+            currend = currend.child[char]
+        }
+        currend.end= true
+    }
+    search(word){
+        let currend = this.root
+        for(let i=0;i<word.length;i++){
+            let char = word[i]
+            if(!currend.child[char]){
+                return false
+            }
+            currend = currend.child[char]
+        }
+        return currend.end;
+    }
+    prefix(word){
+        let currend = this.root
+        for(let i=0;i<word.length;i++){
+            let char = word[i]
+            if(!currend.child[char]){
+                return false
+            }
+            currend = currend.child[char]
+        }
+        return true
+    }
+}
+const trie = new Trie()
+trie.insert("hello")
+console.log(trie.search("hello"));
+console.log(trie.prefix("heh"));
