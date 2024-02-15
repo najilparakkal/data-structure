@@ -1,11 +1,11 @@
-// class TreeNode {
+// class Node {
 //     constructor(data) {
 //         this.data = data
 //         this.left = null
 //         this.right = null
 //     }
 // }
-// class Tree {
+// class BinerySearchTree {
 //     constructor() {
 //         this.root = null
 //     }
@@ -13,38 +13,45 @@
 //         return this.root === null
 //     }
 //     insert(data) {
-//         const newNode = new TreeNode(data)
+//         const newNode = new Node(data)
 //         if (this.isEmpty()) {
 //             this.root = newNode
 //         } else {
 //             this.insertNode(this.root, newNode)
 //         }
 //     }
-//     insertNode(root, newNode) {
-//         if (root.data > newNode.data) {
+//     insertNode(root, node) {
+//         if (root.data > node.data) {
 //             if (root.left === null) {
-//                 root.left = newNode
+//                 root.left = node
 //             } else {
-//                 this.insertNode(root.left, newNode)
+//                 this.insertNode(root.left, node)
 //             }
 //         } else {
 //             if (root.right === null) {
-//                 root.right = newNode
+//                 root.right = node
 //             } else {
-//                 this.insertNode(root.right, newNode)
+//                 this.insertNode(root.right, node)
 //             }
 //         }
 //     }
-//     searchData(root,data){
-//         if(!root){
+//     searchData(root, data) {
+//         if (!root) {
 //             return false
 //         }
-//         if(root.data === data){
+//         if (root.data === data) {
 //             return true
-//         }else if (root.data> data){
-//             return this.searchData(root.left,data)
-//         }else{
-//             return this.searchData(root.right,data)
+//         } else if (root.data > data) {
+//             return this.searchData(root.left, data)
+//         } else if (root.data < data) {
+//             return this.searchData(root.right, data)
+//         }
+//     }
+//     max(root) {
+//         if (!root.right) {
+//             return root.data
+//         } else {
+//             this.max(root.right)
 //         }
 //     }
 //     min(root) {
@@ -54,26 +61,19 @@
 //             return this.min(root.left)
 //         }
 //     }
-//     max(root) {
-//         if (!root.right) {
-//             return root.data
-//         } else {
-//             return this.max(root.right)
-//         }
-//     }
 //     remove(data) {
 //         this.removeNode(this.root, data)
 //     }
 //     removeNode(root, data) {
-//         if (root === null) {
-//             return root
+//         if (!root) {
+//             return null
 //         }
 //         if (root.data > data) {
 //             root.left = this.removeNode(root.left, data)
 //         } else if (root.data < data) {
 //             root.right = this.removeNode(root.right, data)
 //         } else {
-//             if (!root.left &&!root.right) {
+//             if (!root.left && !root.right) {
 //                 return null
 //             }
 //             if (!root.left) {
@@ -86,35 +86,18 @@
 //         }
 //         return root
 //     }
-//     Validate(){
-//         return this.isValid(this.root,-Infinity,Infinity)
+//     validate() {
+//         return this.isValid(this.root, -Infinity, Infinity)
 //     }
-//     isValid(root,min,max){
-//         if(!root){
+//     isValid(root, min, max) {
+//         if (!root) {
 //             return true
 //         }
-//         if(root.data<min || root.data >max){
+//         if (root.data > max || root.data < min) {
 //             return false
 //         }
-//         return this.isValid(root.left,min,root.data) && this.isValid(root.right,root.data,max)
+//         return this.isValid(root.left, min, root.data) && this.isValid(root.right, root.data, max)
 //     }
-
-//     levelOrder() {
-//         let queue = []
-//         queue.push(this.root)
-//         while (queue.length) {
-//             let curr = queue.shift()
-//             console.log(curr.data);
-//             if (curr.left) {
-//                 queue.push(curr.left)
-//             }
-//             if (curr.right) {
-//                 queue.push(curr.right)
-//             }
-//         }
-//     }
-
-
 //     preOrder(root) {
 //         if (root) {
 //             console.log(root.data);
@@ -136,28 +119,33 @@
 //             console.log(root.data);
 //         }
 //     }
+//     levelOrder() {
+//         let queue = []
+//         queue.push(this.root)
+//         while (queue.length) {
+//             let currend = queue.shift()
+//             console.log(currend.data);
+//             if (currend.left) {
+//                 queue.push(currend.left)
+//             }
+//             if (currend.right) {
+//                 queue.push(currend.right)
+//             }
+//         }
+//     }
 // }
-// const tree = new Tree()
+// const tree = new BinerySearchTree()
 // tree.insert(10)
-// tree.insert(20)
 // tree.insert(5)
+// tree.insert(20)
 // tree.insert(8)
 // tree.insert(3)
-// // tree.levelOrder()
-// console.log(tree.Validate(tree.root,10));
-// tree.postOrder(tree.root)
+// tree.remove(5)
+// tree.levelOrder()
+// console.log(tree.validate(tree.root, 20));
 
 
-
-//adjesenty metrix 
-// const metrix = [
-//     [0, 1, 0],
-//     [1, 0, 1],
-//     [0, 1, 0]
-// ]
-// console.log(metrix[0][1]);
-
-// class GraphList {
+// class graph {
 //     constructor() {
 //         this.list = {}
 //     }
@@ -176,7 +164,7 @@
 //         this.list[vertex1].add(vertex2)
 //         this.list[vertex2].add(vertex1)
 //     }
-//     hasEdge(vertex1, vertex2) {
+//     hasEdges(vertex1, vertex2) {
 //         return (this.list[vertex1].has(vertex2) && this.list[vertex2].has(vertex1))
 //     }
 //     removeEdge(vertex1, vertex2) {
@@ -187,8 +175,8 @@
 //         if (!this.list[vertex]) {
 //             return null
 //         }
-//         for (let vert of this.list[vertex]) {
-//             this.removeEdge(vert, vertex)
+//         for (let ver of this.list[vertex]) {
+//             this.removeEdge(ver, vertex)
 //         }
 //         delete this.list[vertex]
 //     }
@@ -198,18 +186,17 @@
 //         }
 //     }
 // }
-// const list = new GraphList()
-// list.addVertex("A")
-// list.addVertex("B")
-// list.addVertex("C")
-// list.addEdges("A", "B")
-// list.addEdges("C", "B")
-// console.log(list.hasEdge("A", "B"));
-// list.removeVertex("B")
-// list.display()
+// const gr = new graph()
+// gr.addVertex("A")
+// gr.addVertex("B")
+// gr.addVertex("C")
+// gr.addEdges("B","A")
+// gr.addEdges("B","C")
+// gr.removeVertex("B")
+// gr.display()
 
 
-// class MinHeap{
+// class MaxHeap{
 //     constructor(){
 //         this.heap = []
 //     }
@@ -221,20 +208,20 @@
 //         this.heap[index1] = this.heap[index2]
 //         this.heap[index2] = temp
 //     }
-//     getLeftChilde(index){
+//     getLeft(index){
 //         return 2*index+1
 //     }
-//     getRightChild(index){
-//         return 2*index+2
+//     getRight(index){
+//         return 2*index +2  
 //     }
 //     insert(data){
 //         this.heap.push(data)
 //         this.heapifyUp(this.heap.length-1)
 //     }
 //     heapifyUp(index){
-//         let parent = this.getParent(index)
-//         if(parent<= this.heap.length && this.heap[parent]> this.heap[index]){
-//             this.swap(parent,index)
+//         let parent =  this.getParent(index)
+//         if(parent<= this.heap.length && this.heap[parent] < this.heap[index]){
+//             this.swap(index,parent)
 //             this.heapifyUp(parent)
 //         }
 //     }
@@ -245,93 +232,82 @@
 //         if(this.heap.length === 1){
 //             return this.heap.pop()
 //         }
-//         let min = this.heap[0]
+//        let min = this.heap[0]
 //         this.heap[0] = this.heap.pop()
 //         this.heapifyDown(0)
 //         return min
 //     }
 //     heapifyDown(index){
-//         let left = this.getLeftChilde(index)
-//         let right = this.getRightChild(index)
+//         let left = this.getLeft(index)
+//         let right = this.getRight(index)
 //         let min = index
-//         if(left< this.heap.length && this.heap[left]<this.heap[min]){
+//         if(left<this.heap.length && this.heap[left] > this.heap[min]){
 //             min = left
 //         }
-//         if(right <this.heap.length && this.heap[right]< this.heap[min]){
+//         if(right<this.heap.length && this.heap[right]> this.heap[min]){
 //             min = right
 //         }
-//         if(min !== index){
+//         if(min!= index){
 //             this.swap(min,index)
 //             this.heapifyDown(min)
 //         }
 //     }
-//     heapArr(arr){
-//         for(let i=0;i<arr.length;i++){
-//             this.insert(arr[i])
-//         }
-//     }
-//     min(){
-//         return this.heap[0]
-//     }
-//     heapSort(){
-//         let arr = []
-//         while(this.heap.length){
-//             arr.push(this.remove())
-//         }
-//         return arr
-//     }
-// }
-// const hp = new MinHeap() 
-// hp.heapArr([35,63,6,12,10])
-// console.log(hp.heap);
-// console.log(hp.heapSort());
 
-// class TrieNode{
+// }
+// const heap = new MaxHeap()
+// heap.insert(13)
+// heap.insert(22)
+// heap.insert(43)
+// heap.insert(50)
+// heap.insert(2)
+// heap.remove()
+// console.log(heap.heap);
+
+// class trieNode{
 //     constructor(){
 //         this.child = {}
 //         this.end = false
 //     }
 // }
-// class Trie{
+// class trie{
 //     constructor(){
-//         this.root = new TrieNode()
+//         this.root = new trieNode()
 //     }
 //     insert(word){
-//         let currentNode  =this.root
-//         for(let i = 0;i<word.length;i++){
+//         let currend = this.root
+//         for(let i=0;i<word.length;i++){
 //             let char = word[i]
-//             if(!currentNode.child[char]){
-//                 currentNode.child[char] = new TrieNode()
+//             if(!currend.child[char]){
+//                 currend.child[char] = new trieNode()
 //             }
-//             currentNode = currentNode.child[char]
+//             currend = currend.child[char]
 //         }
-//         currentNode.end = true
+//         currend.end = true
 //     }
 //     search(word){
-//         let currentNode = this.root
+//         let currend = this.root
 //         for(let i=0;i<word.length;i++){
 //             let char = word[i]
-//             if(!currentNode.child[char]){
+//             if(!currend.child[char]){
 //                 return false
 //             }
-//             currentNode = currentNode.child[char]
+//             currend = currend.child[char]
 //         }
-//         return currentNode.end
+//         return currend.end
 //     }
 //     prefix(word){
-//         let currentNode = this.root
+//         let currend = this.root
 //         for(let i=0;i<word.length;i++){
 //             let char = word[i]
-//             if(!currentNode.child[char]){
+//             if(!currend.child[char]){
 //                 return false
 //             }
-//             currentNode = currentNode.child[char]
+//             currend = currend.child[char]
 //         }
 //         return true
 //     }
-    
 // }
-// const trie = new Trie()
-// trie.insert("HELLO")
-// console.log(trie.search("HELLO"));
-// console.log(trie.prefix("HEL4"));
+// const tr = new trie()
+// tr.insert("HELLO")
+// console.log(tr.search("HEL"));
+// console.log(tr.prefix("HEL"));
