@@ -178,6 +178,6 @@ tr.insert(8)
 // console.log(tr.search(tr.root,20))
 // console.log(tr.search(tr.root,8))
 // console.log(tr.search(tr.root,105))
-tr.leveOrder(tr.root)
+tr.inOrder(tr.root)
 console.log("_____________");
 console.log(tr.closest(3));

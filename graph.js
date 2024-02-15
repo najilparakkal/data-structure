@@ -55,6 +55,39 @@ class graph{
         this.adjecencyList[vertex1].delete(vertex2)
         this.adjecencyList[vertex2].delete(vertex1)
     }
+
+    bfs(startVertex) {
+        const visited = {};
+        const queue = [startVertex];
+        visited[startVertex] = true;
+        while (queue.length) {
+            const currentVertex = queue.shift();
+            console.log(currentVertex);
+            for (const neighbor of this.adjecencyList[currentVertex]) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    queue.push(neighbor);
+                }
+            }
+        }
+    }
+    dfs(startVertex) {
+        const visited = {};
+
+        const dfsHelper = (vertex) => {
+            console.log(vertex);
+            visited[vertex] = true;
+
+            for (const neighbor of this.adjecencyList[vertex]) {
+                if (!visited[neighbor]) {
+                    dfsHelper(neighbor);
+                }
+            }
+        };
+
+        dfsHelper(startVertex);
+    }
+
     display(){
         for(let vertex in this.adjecencyList){
             console.log(vertex +"->"+[...this.adjecencyList[vertex]]);
@@ -67,7 +100,4 @@ gr.addVertex("B")
 gr.addVertex("C")
 gr.addEdges("A","B")
 gr.addEdges("B","C")
-gr.display()
-console.log(gr.hasEdge("A","C"));
-gr.removeVertex("B")
-gr.display()
+gr.bfs("A")
