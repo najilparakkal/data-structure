@@ -48,6 +48,15 @@ class tree {
             }
         }
     }
+    hight(root) {
+        if (root === null) {
+            return -1
+        } else {
+            let leftHeight = this.hight(root.left)
+            let rightHeight = this.hight(root.right)
+            return Math.max(leftHeight, rightHeight) + 1
+        }
+    }
     preOrder(root) {
         if (root) {
             console.log(root.value);
@@ -60,7 +69,6 @@ class tree {
             this.inOrder(root.left)
             console.log(root.value);
             this.inOrder(root.right)
-
         }
     }
     postOrder(root) {
@@ -108,7 +116,7 @@ class tree {
         if (!node) {
             return true
         }
-        
+
         if (node.value < min || node.value > max) {
             return false;
         }
@@ -117,26 +125,25 @@ class tree {
 
     }
 
+    closestValue(target) {
+        let closest = this.root.value;
+        let currentNode = this.root;
 
-    closest(value) {
-        return this.findClosest(this.root, value, Infinity);
-    }
-    findClosest(node, target, closest) {
-        if (!node) {
-            return null;
+        while (currentNode) {
+            if (Math.abs(currentNode.value - target) < Math.abs(closest - target)) {
+                closest = currentNode.value;
+            }
+
+            if (target === currentNode.value) {
+                return currentNode.value;
+            } else if (target < currentNode.value) {
+                currentNode = currentNode.left;
+            } else {
+                currentNode = currentNode.right;
+            }
         }
-        if (Math.abs(node.value - target) < closest) {
-            closest = node.value;
-        }
-        if (target < node.value) {
-            return this.findClosest(node.left, target, closest)
-        }
-        else if (target > node.value) {
-            return this.findClosest(node.right, target, closest)
-        }
-        else {
-            return closest;
-        }
+
+        return closest;
     }
 
     delete(value) {
@@ -179,5 +186,4 @@ tr.insert(8)
 // console.log(tr.search(tr.root,8))
 // console.log(tr.search(tr.root,105))
 tr.inOrder(tr.root)
-console.log("_____________");
-console.log(tr.closest(3));
+console.log(tr.closestValue(10));

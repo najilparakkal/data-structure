@@ -119,16 +119,25 @@
 //             console.log(root.data);
 //         }
 //     }
-//     levelOrder(){
-//         let queue =[]
+//  height(root){
+//     if(root === null){
+//         return -1
+//     }else{
+//         let left = this.height(root.left)
+//         let right = this.height(root.right)
+//         return Math.max(left,right)+1
+//     }
+//  }
+//     levelOrder() {
+//         let queue = []
 //         queue.push(this.root)
-//         while(queue.length){
+//         while (queue.length) {
 //             let currend = queue.shift()
 //             console.log(currend.data);
-//             if(currend.left){
+//             if (currend.left) {
 //                 queue.push(currend.left)
 //             }
-//             if(currend.right){
+//             if (currend.right) {
 //                 queue.push(currend.right)
 //             }
 //         }
@@ -143,6 +152,7 @@
 // tree.remove(5)
 // tree.levelOrder(tree.root)
 // console.log(tree.validate());
+// console.log("Height of node with data 10:", tree.height(tree.root));
 
 
 // class Graph {
@@ -180,6 +190,22 @@
 //         }
 //         delete this.list[vertex]
 //     }
+
+//     bfs(vertex){
+//         let visited = {}
+//         let queue = [vertex]
+//         visited[vertex] = true
+//         while(queue.length){
+//             let currend = queue.shift()
+//             console.log(currend);
+//             for(let neighbor of this.list[currend]){
+//                 if(!visited[neighbor]){
+//                     queue.push(neighbor)
+//                     visited[neighbor] = true
+//                 }
+//             }
+//         }
+//     }
 //     desplay() {
 //         for (let vert in this.list) {
 //             console.log(vert + " =>" + [...this.list[vert]]);
@@ -190,8 +216,11 @@
 // graph.addVertex("A")
 // graph.addVertex("B")
 // graph.addVertex("C")
-// graph.removeVertex("B")
-// graph.desplay()
+// graph.addEdges("A", "B")
+// graph.addEdges("B", "C")
+// graph.bfs("A")
+
+
 
 // class MinHeap {
 //     constructor() {
@@ -319,3 +348,77 @@
 // trie.insert("HELLO")
 // console.log(trie.serach("HELLO"));
 // console.log(trie.prefix("HeL"));
+
+
+
+// class priorityQueue {
+//     constructor() {
+//         this.heap = []
+//     }
+//     getParent(index) {
+//         return Math.floor((index - 1) / 2)
+//     }
+//     left(index) {
+//         return 2 * index + 1
+//     }
+//     right(index) {
+//         return 2 * index + 2
+//     }
+//     swap(index1, index2) {
+//         let temp = this.heap[index1]
+//         this.heap[index1] = this.heap[index2]
+//         this.heap[index2] = temp
+//     }
+//     insert(data, priority) {
+//         let item = { data, priority }
+//         this.heap.push(item)
+//         this.heapfyUp(this.heap.length - 1)
+//     }
+//     heapfyUp(index) {
+//         let parent = this.getParent(index)
+//         while (index > 0 && this.heap[index].priority < this.heap[parent].priority) {
+//             this.swap(index, parent)
+//             index = parent
+//         }
+//     }
+//     remove() {
+//         if (this.heap.length === 0) {
+//             return null
+//         }
+//         if (this.heap.length === 1) {
+//             return this.heap.pop()
+//         }
+//         let min = this.heap[0]
+//         this.heap[0] = this.heap.pop()
+//         this.heapifyDown(0)
+//         return min
+//     }
+//     heapifyDown(index) {
+//         let left = this.left(index)
+//         let right = this.right(index)
+//         let min = index
+//         if (left < this.heap.length && this.heap[left].priority > this.heap[min].priority) {
+//             min = left
+//         }
+//         if (right < this.heap.length && this.heap[right].priority > this.heap[min].priority) {
+//             min = right
+//         }
+//         if (min !== index) {
+//             this.swap(min, index)
+//             this.heapifyDown(min)
+//         }
+//     }
+//     isEmpty(){
+//         return this.heap.length === 0
+//     }
+// }
+// const priority = new priorityQueue();
+
+// priority.insert("Task 1", 3);
+// priority.insert("Task 2", 1);
+// priority.insert("Task 3", 2);
+
+// while (!priority.isEmpty()) {
+//     const task = priority.remove();
+//     console.log(`Processing ${task.value} with priority ${task.priority}`);
+// }

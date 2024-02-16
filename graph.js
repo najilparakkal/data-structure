@@ -21,10 +21,12 @@
 class graph{
     constructor(){
         this.adjecencyList = {}
+        this.count = 0
     }
     addVertex(vertex){
         if(!this.adjecencyList[vertex]){
             this.adjecencyList[vertex]=new Set()
+            this.count++
         }
     }
     addEdges(vertex1,vertex2){
@@ -74,7 +76,7 @@ class graph{
     dfs(startVertex) {
         const visited = {};
 
-        const dfsHelper = (vertex) => {
+        function dfsHelper (vertex) {
             console.log(vertex);
             visited[vertex] = true;
 
@@ -101,3 +103,4 @@ gr.addVertex("C")
 gr.addEdges("A","B")
 gr.addEdges("B","C")
 gr.bfs("A")
+console.log(gr.count);
