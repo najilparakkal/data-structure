@@ -228,51 +228,51 @@
 
 
 
-class node {
-    constructor() {
-        this.child = {}
-        this.end = false
-    }
-}
-class Trie {
-    constructor() {
-        this.root = new node()
-    }
-    insert(word) {
-        const currend = this.root
-        for (let i = 0; i < word.length; i++) {
-            let char = word[i]
-            if (!currend.child[char]) {
-                currend.child[char] = new node()
-            }
-            currend = currend.child[char]
-        }
-        currend.end = true
-    }
-    search(word) {
-        const currend = this.root
-        for (let i = 0; i < word.length; i++) {
-            let char = word[i]
-            if (!currend.child[char]) {
-                return false
-            }
-            currend = currend.child[char]
-        }
-        return currend.end
-    }
-    Prefix(word) {
-        const currend = this.root
-        for (let i = 0; i < word.length; i++) {
-            let char = word[i]
-            if (!currend.child[char]) {
-                return false
-            }
-            currend = currend.child[char]
-        }
-        return true
-    }
-}
-const trie = new Trie()
-trie.insert("NAJIL")
-trie.search("NA")
-trie.Prefix("NA")
+// class node {
+//     constructor() {
+//         this.child = {}
+//         this.end = false
+//     }
+// }
+// class Trie {
+//     constructor() {
+//         this.root = new node()
+//     }
+//     insert(word) {
+//         let currend = this.root
+//         for (let i = 0; i < word.length; i++) {
+//             let char = word[i]
+//             if (!currend.child[char]) {
+//                 currend.child[char] = new node()
+//             }
+//             currend = currend.child[char]
+//         }
+//         currend.end = true
+//     }
+//     search(word) {
+//         let currend = this.root
+//         for (let i = 0; i < word.length; i++) {
+//             let char = word[i]
+//             if (!currend.child[char]) {
+//                 return false
+//             }
+//             currend = currend.child[char]
+//         }
+//         return currend.end
+//     }
+//     Prefix(word) {
+//         let currend = this.root
+//         for (let i = 0; i < word.length; i++) {
+//             let char = word[i]
+//             if (!currend.child[char]) {
+//                 return false
+//             }
+//             currend = currend.child[char]
+//         }
+//         return true
+//     }
+// }
+// const trie = new Trie()
+// trie.insert("NAJIL")
+// console.log(trie.search("NA"));
+// console.log(trie.Prefix("NA"));`
