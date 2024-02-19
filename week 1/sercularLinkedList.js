@@ -36,7 +36,6 @@ class CircularLinkedList {
         }
         this.length++;
     }
-
     print() {
         let print = this.head;
         let count = 0;
