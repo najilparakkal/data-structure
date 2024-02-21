@@ -20,6 +20,10 @@ class Trie {
         currentNode.isEndOfWord = true;
     }
 
+
+
+
+    
     search(word) {
         let currentNode = this.root;
         for (let i = 0; i < word.length; i++) {
