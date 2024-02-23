@@ -1,5 +1,6 @@
 class TrieNode {
     constructor() {
+        this.node = null
         this.children = {};
         this.isEndOfWord = false;
     }
@@ -14,6 +15,7 @@ class Trie {
             const char = word[i];
             if (!currentNode.children[char]) {
                 currentNode.children[char] = new TrieNode();
+                currentNode.node = char
             }
             currentNode = currentNode.children[char];
         }
@@ -49,10 +51,9 @@ class Trie {
     }
 
 }
-const trie = new Trie();
-trie.insert("app");
-trie.insert("apple");
-trie.insert("apply");
 
-console.log(trie.startsWith("app"));
+const trie = new Trie();
+trie.insert("orange");
+
+console.log(trie.startsWith("ora"));
 console.log(trie.search("ly"));

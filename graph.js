@@ -75,18 +75,15 @@ class graph{
     }
     dfs(startVertex) {
         const visited = {};
-
         function dfsHelper (vertex) {
             console.log(vertex);
             visited[vertex] = true;
-
             for (const neighbor of this.adjecencyList[vertex]) {
                 if (!visited[neighbor]) {
                     dfsHelper(neighbor);
                 }
             }
         };
-
         dfsHelper(startVertex);
     }
 

@@ -126,24 +126,25 @@ class tree {
     }
 
     closestValue(target) {
-        let closest = this.root.value;
-        let currentNode = this.root;
+        return this.findClosest(this.root, target, Infinity);
+    }
 
-        while (currentNode) {
-            if (Math.abs(currentNode.value - target) < Math.abs(closest - target)) {
-                closest = currentNode.value;
-            }
-
-            if (target === currentNode.value) {
-                return currentNode.value;
-            } else if (target < currentNode.value) {
-                currentNode = currentNode.left;
-            } else {
-                currentNode = currentNode.right;
-            }
+    findClosest(node, target, closest) {
+        if (node === null) {
+            return closest;
         }
 
-        return closest;
+        if (Math.abs(node.data - target) < Math.abs(closest - target)) {
+            closest = node.data;
+        }
+
+        if (target < node.data) {
+            return this.findClosest(node.left, target, closest);
+        } else if (target > node.data) {
+            return this.findClosest(node.right, target, closest);
+        } else {
+            return closest;
+        }
     }
 
     delete(value) {
