@@ -87,7 +87,7 @@ function heapSort(arr) {
         heapify(arr, 0, i);
     }
     return arr;
-}
+}   
 function heapify(arr,index,size){
     let left = 2*index+1
     let right = 2*index +2
