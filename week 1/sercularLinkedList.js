@@ -47,7 +47,6 @@ class CircularLinkedList {
         } while (print !== this.head && count < this.length);
     }
 }
-
 const circularList = new CircularLinkedList();
 circularList.append(10);
 circularList.append(20);
