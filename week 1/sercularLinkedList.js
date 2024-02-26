@@ -11,6 +11,8 @@ class CircularLinkedList {
         this.length = 0;
     }
 
+
+
     prepend(data) {
         const prependNode = new Node(data);
         if (this.head === null) {
@@ -36,6 +38,7 @@ class CircularLinkedList {
         }
         this.length++;
     }
+    
     print() {
         let print = this.head;
         let count = 0;
